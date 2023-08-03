@@ -1,0 +1,11 @@
+{% extends 'lms_site/admin_dashboard.html' %}
+
+{% block main %}
+<div class="container mt-4">
+  <form action="{% url 'admin_member_add' %}" method="post">
+    {% csrf_token %}
+    {{ fm.as_p }}
+    <input class="btn btn-primary" type="submit" value="Save">
+  </form>
+</div>
+{% endblock main %}

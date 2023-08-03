@@ -1,0 +1,35 @@
+{% extends 'lms_site/base.html' %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+  {% if user.is_authenticated %}
+   <h1 class="text-center border-bottom p-2 bg-dark text-white">Welcome {{ user.status }} {{ user.username }}</h1> 
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="d-flex flex-row align-items-center">
+          <aside>
+            <div class="list-group">
+              <a href="{% url 'student_book_list' %}" class="list-group-item list-group-item-action" aria-current="true">
+                Book List     
+              </a>
+              <a href="{% url 'reading_book_list' %}" class="list-group-item list-group-item-action" aria-current="true">
+                Reading List
+              </a>
+              {% comment %} <a href="{% url 'admin_member_add' %}" class="list-group-item list-group-item-action">Member add</a>
+              <a href="{% url 'admin_librarian_list' %}" class="list-group-item list-group-item-action">Librarian List</a>
+              <a href="{% url 'admin_student_list' %}" class="list-group-item list-group-item-action">Student List</a> {% endcomment %}
+            </div>
+          </aside>
+          <main class="offset-1">
+            {% block main %}{% endblock main %}
+          </main>
+        </div>
+      </div>
+    </div>
+    
+    
+  {% else %}
+    Welcome to Homepage
+  {% endif %}
+{% endblock content %}

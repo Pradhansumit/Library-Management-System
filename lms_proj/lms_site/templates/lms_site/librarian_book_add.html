@@ -1,0 +1,11 @@
+{% extends 'lms_site/librarian_dashboard.html' %}
+
+{% block main %}
+<div class="container mt-4">
+  <form action="{% url 'librarian_book_add' %}" method="post">
+    {% csrf_token %}
+    {{ fmbooks.as_p }}
+    <input class="btn btn-primary" type="submit" value="Save">
+  </form>
+</div>
+{% endblock main %}

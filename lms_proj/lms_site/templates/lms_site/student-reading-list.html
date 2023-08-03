@@ -1,0 +1,35 @@
+{% extends 'lms_site/student_dashboard.html' %}
+{% block main %}
+<div class="container-fluid">
+  <h4 class="text-center border-bottom border-3">My Reading List</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Author</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Category</th>
+        {% comment %} <th scope="col">Action</th> {% endcomment %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in book_list %}
+      <tr>
+        <th scope="row">{{ book.id }}</th>
+        <td>{{ book.book_name }}</td>
+        <td>{{ book.book_author}}</td>
+        <td>{{ book.book_isbn }}</td>
+        <td>{{ book.book_category }}</td>
+        <td>
+          <form class="d-inline" action="{% url 'librarian_book_delete' book.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock main %}
